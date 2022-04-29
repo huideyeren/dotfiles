@@ -1,0 +1,105 @@
+# ~/.config/starship.toml
+
+# シェルプロンプトの間に空行を挿入します。
+add_newline = true
+
+# ファイルをスキャンする際のタイムアウト時間
+scan_timeout = 10
+
+# 記号の設定
+[character]
+success_symbol = "[▶](bold green)" # コマンド成功時
+error_symbol = "[▶](bold red)"    # コマンド失敗時
+
+# conda環境の表示
+[conda]
+format = "[$symbol$environment](dimmed green) "
+ignore_base = false  # base環境も表示させたい
+
+[aws]
+format = 'on [$symbol($profile )(\($region\) )]($style)'
+style = "bold blue"
+symbol = "🅰 "
+[aws.region_aliases]
+ap-southeast-2 = "au"
+us-east-1 = "va"
+
+[azure]
+disabled = false
+format = "on [$symbol($subscription)]($style) "
+symbol = "ﴃ "
+style = "blue bold"
+
+[battery]
+full_symbol = "🔋 "
+charging_symbol = "⚡️ "
+discharging_symbol = "💀 "
+
+[container]
+format = "[$symbol \\[$name\\]]($style) "
+
+[directory]
+truncation_length = 8
+truncation_symbol = "…/"
+
+[docker_context]
+format = "via [🐋 $context](blue bold)"
+
+[dotnet]
+symbol = "🥅 "
+style = "green"
+heuristic = false
+
+[git_branch]
+symbol = "🌱 "
+truncation_length = 4
+truncation_symbol = ""
+
+[git_commit]
+commit_hash_length = 4
+tag_symbol = "🔖 "
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+cherry_pick = "[🍒 PICKING](bold red)"
+
+[git_status]
+conflicted = "🏳"
+ahead = "🏎💨"
+behind = "😰"
+diverged = "😵"
+up_to_date = "✓"
+untracked = "🤷"
+stashed = "📦"
+modified = "📝"
+staged = '[++\($count\)](green)'
+renamed = "👅"
+deleted = "🗑"
+
+[java]
+symbol = "🌟 "
+
+[kotlin]
+symbol = "🅺 "
+kotlin_binary = "kotlinc"
+
+[nodejs]
+format = "via [🤖 $version](bold green) "
+
+[python]
+symbol = "🐍 "
+pyenv_version_name = true
+
+[ruby]
+symbol = "💎 "
+
+[rust]
+format = "via [⚙️ $version](red bold)"
+
+[shell]
+fish_indicator = ""
+powershell_indicator = "_"
+unknown_indicator = "mystery shell"
+style = "cyan bold"
+disabled = false
+
