@@ -2,6 +2,3 @@
     autoCommit = true
     autoPush = true
 
-[edit]
-    command = "code"
-    args = ["--wait"]
