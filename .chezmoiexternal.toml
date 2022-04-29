@@ -1,0 +1,4 @@
+[".emacs.d"]
+    type = "git-repo"
+    url = "https://github.com/syl20bnr/spacemacs.git"
+    refreshPeriod = "168h"
