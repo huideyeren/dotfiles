@@ -75,7 +75,7 @@ This function should only modify configuration layer settings."
      ruby-on-rails
      emoji
      (osx :variables osx-use-option-as-meta nil)
-     github
+     ;; github
      docker
      pandoc
      pdf-tools
