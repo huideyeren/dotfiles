@@ -1,0 +1,56 @@
+#!/bin/sh
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+# sheldon
+brew install sheldon
+# starship
+brew install starship
+# github CLI
+brew install gh
+
+{{ else if eq .chezmoi.os "linux" -}}
+
+# sheldon
+curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
+  | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
+# starship
+curl -fsSL https://starship.rs/install.sh | sh -s -- --yes
+
+{{   if eq .chezmoi.osRelease.id "debian" }}
+
+# github CLI
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+sudo apt update
+sudo apt install gh
+
+{{   else if eq .chezmoi.osRelease.id "fedora" }}
+
+# github CLI
+sudo dnf install 'dnf-command(config-manager)'
+sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+sudo dnf install gh
+
+{{   else if eq .chezmoi.osRelease.id "centos" }}
+
+# github CLI
+sudo dnf install 'dnf-command(config-manager)'
+sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+sudo dnf install gh
+
+{{   else if eq .chezmoi.osRelease.id "opensuse" }}
+
+# github CLI
+sudo zypper addrepo https://cli.github.com/packages/rpm/gh-cli.repo
+sudo zypper ref
+sudo zypper install gh
+
+{{   else if eq .chezmoi.osRelease.id "alpine" }}
+
+# github CLI
+apk add github-cli
+
+{{   end }}
+
+{{ end -}}
