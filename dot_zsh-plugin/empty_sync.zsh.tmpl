@@ -20,15 +20,6 @@ eval "$(pyenv init -)"
 ### Load starship
 eval "$(starship init zsh)"
 
-### bindkey
-bindkey '^xb' anyframe-widget-cdr
-autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-add-zsh-hook chpwd chpwd_recent_dirs
-
-bindkey '^xr' anyframe-widget-execute-history
-
-bindkey '^x^b' anyframe-widget-checkout-git-branch
-
 ### exa config
 if [[ $(command -v exa) ]]; then
   alias e='exa --icons --git'
