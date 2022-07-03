@@ -14,6 +14,15 @@ brew install gh
 # peco
 brew install peco
 
+#exa
+brew install exa
+
+#bat
+brew install bat
+
+#procs
+brew install procs
+
 {{ else if eq .chezmoi.os "linux" -}}
 
 # sheldon
@@ -34,12 +43,30 @@ sudo apt install gh
 # peco
 sudo apt install peco
 
+# exa
+sudo apt install exa
+
+# bat
+sudo apt install bat
+
+# procs
+
+
 {{   else if eq .chezmoi.osRelease.id "fedora" }}
 
 # github CLI
 sudo dnf install 'dnf-command(config-manager)'
 sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
 sudo dnf install gh
+
+# exa
+sudo dnf install exa
+
+# bat
+sudo dnf install bat
+
+# procs
+sudo dnf install procs
 
 {{   else if eq .chezmoi.osRelease.id "centos" }}
 
@@ -48,6 +75,15 @@ sudo dnf install 'dnf-command(config-manager)'
 sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
 sudo dnf install gh
 
+# exa
+sudo dnf install exa
+
+# bat
+sudo dnf install bat
+
+# procs
+sudo dnf install procs
+
 {{   else if eq .chezmoi.osRelease.id "opensuse" }}
 
 # github CLI
@@ -55,10 +91,28 @@ sudo zypper addrepo https://cli.github.com/packages/rpm/gh-cli.repo
 sudo zypper ref
 sudo zypper install gh
 
+# exa
+sudo zypper install exa
+
+# bat
+sudo zypper install bat
+
+# procs
+
+
 {{   else if eq .chezmoi.osRelease.id "alpine" }}
 
 # github CLI
-apk add github-cli
+sudo apk add github-cli
+
+# exa
+sudo apk add exa
+
+# bat
+sudo apk add bat
+
+# procs
+sudo apk add procs
 
 {{   end }}
 
