@@ -1,0 +1,10 @@
+{{ if eq .chezmoi.os "darwin" }}
+# darwin
+export EDITOR="code --wait" # vscode
+{{ else if eq .chezmoi.os "linux" }}
+# linux
+export EDITOR="vim"
+{{ else }}
+# other operating system
+export EDITOR="vi"
+{{ end }}
