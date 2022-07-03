@@ -27,8 +27,15 @@ github = "zsh-users/zsh-completions"
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
 
+{{ if eq .chezmoi.os "darwin" -}}
 [plugins.anyframe]
 github = "mollifier/anyframe"
+{{ else if eq .chezmoi.os "linux" -}}
+{{   if eq .chezmoi.osRelease.id "debian" }}
+[plugins.anyframe]
+github = "mollifier/anyframe"
+{{   end }}
+{{ end -}}
 
 [plugins.gibo]
 github = "simonwhitaker/gibo"
