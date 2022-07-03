@@ -1,16 +1,3 @@
-### setting editor
-
-{{ if eq .chezmoi.os "darwin" }}
-# macOS
-export EDITOR="code --wait" # vscode
-{{ else if eq .chezmoi.os "linux" }}
-# Linux
-export EDITOR="vim"
-{{ else }}
-# other operating system
-export EDITOR="vi"
-{{ end }}
-
 {{ if eq .chezmoi.os "darwin" }}
 ### Setting Ruby
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
