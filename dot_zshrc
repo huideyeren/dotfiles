@@ -6,6 +6,9 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
+
+### Zinit Settings
+
 if [[ ! -f $HOME/.zi/bin/zi.zsh ]]; then
   print -P "%F{33}▓▒░ %F{160}Installing (%F{33}z-shell/zi%F{160})…%f"
   command mkdir -p "$HOME/.zi" && command chmod g-rwX "$HOME/.zi"
@@ -42,6 +45,8 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 ### End of Zinit's installer chunk
+
+### Keybind settings
 
 bindkey '^xb' anyframe-widget-cdr
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
