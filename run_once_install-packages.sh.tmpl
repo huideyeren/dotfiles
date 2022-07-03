@@ -4,16 +4,22 @@
 
 # sheldon
 brew install sheldon
+
 # starship
 brew install starship
+
 # github CLI
 brew install gh
+
+# peco
+brew install peco
 
 {{ else if eq .chezmoi.os "linux" -}}
 
 # sheldon
 curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
   | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
+
 # starship
 curl -fsSL https://starship.rs/install.sh | sh -s -- --yes
 
@@ -24,6 +30,9 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
 sudo apt update
 sudo apt install gh
+
+# peco
+sudo apt install peco
 
 {{   else if eq .chezmoi.osRelease.id "fedora" }}
 
