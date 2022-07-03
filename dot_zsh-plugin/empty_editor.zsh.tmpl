@@ -1,8 +1,8 @@
 {{ if eq .chezmoi.os "darwin" }}
-# darwin
+# macOS
 export EDITOR="code --wait" # vscode
 {{ else if eq .chezmoi.os "linux" }}
-# linux
+# Linux
 export EDITOR="vim"
 {{ else }}
 # other operating system
