@@ -12,9 +12,39 @@
 
 shell = "zsh"
 
-[plugins]
+apply = ["defer"]
 
-# For example:
-#
-# [plugins.base16]
-# github = "chriskempson/base16-shell"
+[templates]
+defer = { value = 'zsh-defer source ""', each = true }
+
+[plugins.compinit]
+inline = 'autoload -Uz compinit && zsh-defer compinit'
+
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+
+[plugins.ohmyzsh-lib]
+github = "ohmyzsh/ohmyzsh"
+dir = "lib"
+use = ["{completion,key-bindings,directories}.zsh"]
+
+[plugins.asdf]
+github = "asdf-vm/asdf"
+
+[plugins.zsh-better-npm-completion]
+github = "lukechilds/zsh-better-npm-completion"
+
+[plugins.aws_zsh_completer]
+remote = "https://raw.githubusercontent.com/aws/aws-cli/v2/bin/aws_zsh_completer.sh"
+
+[plugins.dotfiles-defers]
+local = "~/.zsh-plugin"
+use = ["{!sync,*}.zsh"]
+
+[plugins.dotfiles-sync]
+local = "~/.zsh-plugin"
+use = ["sync.zsh"]
+apply = ["source"]
