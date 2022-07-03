@@ -1,3 +1,7 @@
+### Setting autoload
+autoload -Uz compinit
+compinit
+
 {{ if eq .chezmoi.os "darwin" }}
 ### Setting Ruby
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
