@@ -1,0 +1,6 @@
+README.md
+
+{{- if eq (env "REMOTE_CONTAINERS") "true" }}
+# devcontainer automatically copies the host's `.gitconfig` into the container, so it is not subject to `chezmoi aplly`.
+/.gitconfig
+{{- end }}
