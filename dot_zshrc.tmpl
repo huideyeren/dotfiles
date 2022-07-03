@@ -1,8 +1,10 @@
+{{ if eq .chezmoi.os "darwin" }}
 ### Path Helper for mac
 eval "$(/usr/libexec/path_helper)"
 
 ### Setting Ruby
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+{{ end }}
 
 ### Load rbenv
 eval "$(rbenv init - zsh)"
