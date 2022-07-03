@@ -3,5 +3,11 @@
     autoPush = true
 
 [edit]
+{{ if eq .chezmoi.os "darwin" }}
     command = "code"
     args = ["--wait"]
+{{ else if eq .chezmoi.os "linux" }}
+    command = "vim"
+{{ else }}
+    command = "vi"
+{{ end }}
