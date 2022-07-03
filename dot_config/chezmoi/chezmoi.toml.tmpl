@@ -2,12 +2,14 @@
     autoCommit = true
     autoPush = true
 
-[edit]
 {{ if eq .chezmoi.os "darwin" }}
+[edit]
     command = "code"
     args = ["--wait"]
 {{ else if eq .chezmoi.os "linux" }}
+[edit]
     command = "vim"
 {{ else }}
+[edit]
     command = "vi"
 {{ end }}
