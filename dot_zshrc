@@ -1,11 +1,23 @@
+### Path Helper for mac
 eval "$(/usr/libexec/path_helper)"
+
+### Setting Ruby
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+### Load rbenv
 eval "$(rbenv init - zsh)"
+
+### Load nodenv
 eval "$(nodenv init - --no-rehash)"
+
+### Load pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
+
+### Load sheldon
+eval "$(sheldon source)"
 
 # ### Zinit Settings
 
