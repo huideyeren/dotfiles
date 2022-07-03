@@ -12,8 +12,6 @@
 
 shell = "zsh"
 
-apply = ["defer"]
-
 [templates]
 defer = { value = 'zsh-defer source ""', each = true }
 
@@ -25,6 +23,16 @@ github = "zsh-users/zsh-syntax-highlighting"
 
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"
+
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+
+[plugins.anyframe]
+github = "mollifier/anyframe"
+
+[plugins.gibo]
+github = "simonwhitaker/gibo"
+use = ["shell-completions/gibo-completion.zsh"]
 
 [plugins.ohmyzsh-lib]
 github = "ohmyzsh/ohmyzsh"
@@ -43,8 +51,8 @@ remote = "https://raw.githubusercontent.com/aws/aws-cli/v2/bin/aws_zsh_completer
 [plugins.dotfiles-defers]
 local = "~/.zsh-plugin"
 use = ["{!sync,*}.zsh"]
+apply = ["defer"]
 
 [plugins.dotfiles-sync]
 local = "~/.zsh-plugin"
 use = ["sync.zsh"]
-apply = ["source"]
