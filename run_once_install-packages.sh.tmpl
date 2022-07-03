@@ -14,14 +14,17 @@ brew install gh
 # peco
 brew install peco
 
-#exa
+# exa
 brew install exa
 
-#bat
+# bat
 brew install bat
 
-#procs
+# procs
 brew install procs
+
+# tumx
+brew install tmux
 
 {{ else if eq .chezmoi.os "linux" -}}
 
@@ -50,7 +53,10 @@ sudo apt install exa
 sudo apt install bat
 
 # procs
+sudo apt install procs
 
+# tmux
+sudo apt install tmux
 
 {{   else if eq .chezmoi.osRelease.id "fedora" }}
 
@@ -68,6 +74,9 @@ sudo dnf install bat
 # procs
 sudo dnf install procs
 
+# tmux
+sudo dnf install tmux
+
 {{   else if eq .chezmoi.osRelease.id "centos" }}
 
 # github CLI
@@ -83,6 +92,9 @@ sudo dnf install bat
 
 # procs
 sudo dnf install procs
+
+# tmux
+sudo dnf install tmux
 
 {{   else if eq .chezmoi.osRelease.id "opensuse" }}
 
@@ -100,6 +112,10 @@ sudo zypper install bat
 # procs
 
 
+# tmux
+sudo zypper install tmux
+
+
 {{   else if eq .chezmoi.osRelease.id "alpine" }}
 
 # github CLI
@@ -113,6 +129,9 @@ sudo apk add bat
 
 # procs
 sudo apk add procs
+
+# tmux
+sudo apk add tmux
 
 {{   end }}
 
