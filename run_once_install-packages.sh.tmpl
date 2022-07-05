@@ -87,18 +87,23 @@ sudo apt upgrade
 sudo apt install ubuntu-defaults-ja
 sudo apt install manpages-ja manpages-ja-dev
 
+# fonts
+cat << EOS | sudo tee /etc/fonts/local.conf
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig><dir>/mnt/c/Windows/Fonts</dir></fontconfig>
+EOS
 
 # us-keyboard
 sudo apt install x11-xkb-utils
 setxkbmap -layout us
 
-# fctix
-sudo apt install fcitx-bin fcitx-mozc dbus-x11 language-pack-ja
+# fcitx5
+sudo add-apt-repository ppa:ikuya-fruitsbasket/fcitx5
+sudo apt update
+sudo apt install fcitx5 fcitx5-mozc
 sudo update-locale LANG=ja_JP.UTF8
-sudo sh -c "dbus-uuidgen > /var/lib/dbus/machine-id"
-im-config -n fcitx
-sudo service dbus restart
-fcitx-autostart
+im-config -n fcitx5
 
 {{     else }}
 
