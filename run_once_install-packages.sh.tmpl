@@ -46,6 +46,62 @@ sudo apt install gh
 # peco
 sudo apt install peco
 
+{{     if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+
+# Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# exa
+cargo install exa
+
+# bat
+cargo install bat
+
+# procs
+cargo install procs
+
+# fd
+cargo install fd-find
+
+# ripgrep
+cargo install ripgrep
+
+# tmux
+sudo apt update
+sudo apt install git automake bison build-essential pkg-config libevent-dev libncurses5-dev
+sudo git clone https://github.com/tmux/tmux /usr/local/src/tmux
+cd /usr/local/src/tmux
+sudo ./autogen.sh
+sudo ./configure --prefix=/usr/local
+sudo make
+sudo make install
+
+
+
+# Japanese environment
+wget -q https://www.ubuntulinux.jp/ubuntu-ja-archive-keyring.gpg -O- | sudo apt-key add -
+wget -q https://www.ubuntulinux.jp/ubuntu-jp-ppa-keyring.gpg -O- | sudo apt-key add -
+sudo wget https://www.ubuntulinux.jp/sources.list.d/focal.list -O /etc/apt/sources.list.d/ubuntu-ja.list
+sudo apt update
+sudo apt upgrade
+sudo apt install ubuntu-defaults-ja
+sudo apt install manpages-ja manpages-ja-dev
+
+
+# us-keyboard
+sudo apt install x11-xkb-utils
+setxkbmap -layout us
+
+# fctix
+sudo apt install fcitx-bin fcitx-mozc dbus-x11 language-pack-ja
+sudo update-locale LANG=ja_JP.UTF8
+sudo sh -c "dbus-uuidgen > /var/lib/dbus/machine-id"
+im-config -n fcitx
+sudo service dbus restart
+fcitx-autostart
+
+{{     else }}
+
 # exa
 sudo apt install exa
 
@@ -57,6 +113,39 @@ sudo apt install procs
 
 # tmux
 sudo apt install tmux
+
+{{     end }}
+
+# chezmoi
+wget https://github.com/twpayne/chezmoi/releases/download/v2.18.1/chezmoi_2.18.1_linux_amd64.deb
+sudo dpkg -i chezmoi_2.18.1_linux_amd64.deb
+
+{{   else if eq .chezmoi.osRelease.id "debian" }}
+
+# github CLI
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+sudo apt update
+sudo apt install gh
+
+# peco
+sudo apt install peco
+
+# exa
+sudo apt install exa
+
+# bat
+sudo apt install bat
+
+# procs
+sudo apt install procs
+
+# tmux
+sudo apt install tmux
+
+# chezmoi
+wget https://github.com/twpayne/chezmoi/releases/download/v2.18.1/chezmoi_2.18.1_linux_amd64.deb
+sudo dpkg -i chezmoi_2.18.1_linux_amd64.deb
 
 {{   else if eq .chezmoi.osRelease.id "fedora" }}
 
