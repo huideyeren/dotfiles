@@ -35,3 +35,15 @@ fi
 if [[ $(command -v bat) ]]; then
   alias cat=bat
 fi
+
+
+{{ if eq .chezmoi.os "linux" }}
+{{   if eq .chezmoi.osRelease.id "debian" }}
+### setting fcitx
+export QT_IM_MODULE=fcitx
+export GTK_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export DefaultIMModule=fcitx
+fcitx-autostart &> /dev/null
+{{   end }}
+{{ end }}
