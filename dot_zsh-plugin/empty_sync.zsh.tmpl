@@ -47,3 +47,12 @@ export DefaultIMModule=fcitx
 fcitx-autostart &> /dev/null
 {{   end }}
 {{ end }}
+
+{{ if eq .chezmoi.os "linux" }}
+{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+# resolv conf
+if [ -f ~/scripts/write_resolv_conf_with_dns.sh ]; then
+     alias reset_resolv='wsl.exe sh -c "~/scripts/write_resolv_conf_with_dns.sh"'
+fi
+{{   end }}
+{{ end }}
