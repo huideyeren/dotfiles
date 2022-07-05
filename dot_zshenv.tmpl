@@ -9,9 +9,16 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 {{- if ne (env "REMOTE_CONTAINERS") "true" }}
 ### Load rbenv
+{{   if eq .chezmoi.os "linux" }}
+export PATH="$HOME/.rbenv/bin:$PATH"
+{{   end }}
 eval "$(rbenv init - zsh)"
 
 ### Load nodenv
+{{   if eq .chezmoi.os "linux" }}
+export PATH="$HOME/.nodenv/bin:$PATH"
+export PATH="$HOME/.nodenv/shims:$PATH"
+{{   end }}
 eval "$(nodenv init - --no-rehash)"
 
 ### Load pyenv
