@@ -7,6 +7,36 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 " lightlineのプラグイン
 Plugin 'itchyny/lightline.vim'
+" Pythonのプラグイン
+Plugin 'davidhalter/jedi-vim'
+" NERDTree
+Plugin 'scrooloose/nerdtree'
+" nerdtree-git-plugin
+Plugin 'xuyuanp/nerdtree-git-plugin'
+" Syntastic
+Plugin 'scrooloose/syntastic'
+" fugitive.vim
+Plugin 'tpope/vim-fugitive'
+" Tagbar
+Plugin 'majutsushi/tagbar'
+" vim-javascript
+Plugin 'pangloss/vim-javascript'
+" vim-jsx-pretty
+Plugin 'maxmellon/vim-jsx-pretty'
+" TypeScript
+Plugin 'leafgarland/typescript-vim'
+" Markdown syntax
+Plugin 'plasticboy/vim-markdown'
+" JSON.vim
+Plugin 'elzr/vim-json'
+" vim-tmux-navigator
+Plugin 'christoomey/vim-tmux-navigator'
+
+" vim-ruby
+Plugin 'vim-ruby/vim-ruby'
+" rails.vim
+Plugin 'tpope/vim-rails'
+
 call vundle#end()
 
 "文字コードをUFT-8に設定
