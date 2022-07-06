@@ -111,7 +111,7 @@ nnoremap j gj
 nnoremap k gk
 " シンタックスハイライトの有効化
 syntax on
-colorscheme onedark
+colorscheme wombat
 
 " 操作系
 " マウス操作の有効化 & ホイール操作の有効化
@@ -149,7 +149,7 @@ autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
 
 " lightlineの色設定
 let g:lightline = {
-      \ 'colorscheme': 'one',
+      \ 'colorscheme': 'wombat',
       \ }
 
 " nerdtree git
