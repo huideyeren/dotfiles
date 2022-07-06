@@ -109,6 +109,7 @@ nnoremap j gj
 nnoremap k gk
 " シンタックスハイライトの有効化
 syntax on
+colorscheme wombat
 
 " 操作系
 " マウス操作の有効化 & ホイール操作の有効化
@@ -183,5 +184,3 @@ let g:gist_clip_command = 'xclip -selection clipboard'
 " シンタックスチェック
 let g:syntastic_cs_checkers = ['code_checker']
 
-" Color
-colorscheme wombat
