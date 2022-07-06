@@ -1,6 +1,7 @@
 {{ if eq .chezmoi.os "darwin" }}
 ### Path Helper for mac
 eval "$(/usr/libexec/path_helper)"
+eval $(/opt/homebrew/bin/brew shellenv)
 {{ end }}
 
 ### Setting autoload
