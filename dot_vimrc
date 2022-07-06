@@ -7,8 +7,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 " lightlineのプラグイン
 Plugin 'itchyny/lightline.vim'
-" OneDark
-Plugin 'joshdick/onedark.vim'
+" Wombat
+Plugin 'Wombat'
 " Pythonのプラグイン
 Plugin 'davidhalter/jedi-vim'
 " vim-flake8
@@ -67,6 +67,8 @@ Plugin 'hail2u/vim-css3-syntax'
 Plugin 'tpope/vim-haml'
 " Gist
 Plugin 'mattn/gist-vim'
+" ONE Dark
+Plugin 'joshdick/onedark.vim'
 
 
 call vundle#end()
