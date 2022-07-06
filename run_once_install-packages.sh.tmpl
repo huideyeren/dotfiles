@@ -229,4 +229,8 @@ sudo apk add tmux
 
 {{   end }}
 
-{{ end -}}
+{{ end }}
+
+{{ if ne (env "REMOTE_CONTAINERS") "true" }}
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+{{ end }}
