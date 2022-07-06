@@ -182,3 +182,6 @@ let g:gist_clip_command = 'xclip -selection clipboard'
 
 " シンタックスチェック
 let g:syntastic_cs_checkers = ['code_checker']
+
+" Color
+colorscheme [wombat]
