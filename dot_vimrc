@@ -7,8 +7,14 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 " lightlineのプラグイン
 Plugin 'itchyny/lightline.vim'
+" Wombat
+Plugin 'Wombat'
 " Pythonのプラグイン
 Plugin 'davidhalter/jedi-vim'
+" vim-flake8
+Plugin 'nvie/vim-flake8'
+" Black
+Plugin 'ambv/black'
 " NERDTree
 Plugin 'scrooloose/nerdtree'
 " nerdtree-git-plugin
@@ -33,6 +39,8 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'plasticboy/vim-markdown'
 " JSON.vim
 Plugin 'elzr/vim-json'
+" vim-yaml
+Plugin 'stephpy/vim-yaml'
 " vim-tmux-navigator
 Plugin 'christoomey/vim-tmux-navigator'
 " vim-ruby
@@ -43,6 +51,23 @@ Plugin 'tpope/vim-rails'
 Plugin 'rust-lang/rust.vim'
 " omnisharp-vim
 Plugin 'omnisharp/omnisharp-vim'
+" vim-review
+Plugin 'tokorom/vim-review'
+" vimtex
+Plugin 'lervag/vimtex'
+" dockerfile.vim
+Plugin 'ekalinin/dockerfile.vim'
+" vim-ps1
+Plugin 'pprovost/vim-ps1'
+" html5.vim
+Plugin 'othree/html5.vim'
+" css
+Plugin 'hail2u/vim-css3-syntax'
+" Haml & scss
+Plugin 'tpope/vim-haml'
+" Gist
+Plugin 'mattn/gist-vim'
+
 
 call vundle#end()
 
@@ -151,6 +176,9 @@ let g:rustfmt_autosave = 1
 
 " C#
 let g:OmniSharp_selector_ui = 'fzf'
+
+" Gist
+let g:gist_clip_command = 'xclip -selection clipboard'
 
 " シンタックスチェック
 let g:syntastic_cs_checkers = ['code_checker']
