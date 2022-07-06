@@ -19,6 +19,10 @@ Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 " Tagbar
 Plugin 'majutsushi/tagbar'
+" fzf
+Plugin 'junegunn/fzf'
+" dispatch.vim
+Plugin 'tpope/vim-dispatch'
 " vim-javascript
 Plugin 'pangloss/vim-javascript'
 " vim-jsx-pretty
@@ -31,11 +35,14 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'elzr/vim-json'
 " vim-tmux-navigator
 Plugin 'christoomey/vim-tmux-navigator'
-
 " vim-ruby
 Plugin 'vim-ruby/vim-ruby'
 " rails.vim
 Plugin 'tpope/vim-rails'
+" rust.vim
+Plugin 'rust-lang/rust.vim'
+" omnisharp-vim
+Plugin 'omnisharp/omnisharp-vim'
 
 call vundle#end()
 
@@ -112,3 +119,38 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " chezmoi apply を常に実行する
 autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
 
+" lightlineの色設定
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+
+" nerdtree git
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
+
+let g:NERDTreeGitStatusUseNerdFonts = 1
+
+" JavaScript
+let g:javascript_plugin_jsdoc = 1
+
+" JSX
+let g:vim_jsx_pretty_template_tags = 	['html', 'jsx', 'tsx']
+
+" Rust
+let g:rustfmt_autosave = 1
+
+" C#
+let g:OmniSharp_selector_ui = 'fzf'
+
+" シンタックスチェック
+let g:syntastic_cs_checkers = ['code_checker']
