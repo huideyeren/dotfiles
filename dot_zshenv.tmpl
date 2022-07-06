@@ -1,3 +1,8 @@
+{{ if eq .chezmoi.os "darwin" }}
+### Path Helper for mac
+eval "$(/usr/libexec/path_helper)"
+{{ end }}
+
 ### Setting autoload
 autoload -Uz compinit
 compinit
