@@ -10,9 +10,6 @@ compinit
 {{ if eq .chezmoi.os "darwin" }}
 ### Setting Ruby
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-
-### Load Rust Tool Chain
-. "$HOME/.cargo/env"
 {{ end }}
 
 {{ if ne (env "REMOTE_CONTAINERS") "true" }}
@@ -20,16 +17,12 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 . "$HOME/.cargo/env"
 
 ### Load rbenv
-{{   if eq .chezmoi.os "linux" }}
 export PATH="$HOME/.rbenv/bin:$PATH"
-{{   end }}
 eval "$(rbenv init - zsh)"
 
 ### Load nodenv
-{{   if eq .chezmoi.os "linux" }}
 export PATH="$HOME/.nodenv/bin:$PATH"
 export PATH="$HOME/.nodenv/shims:$PATH"
-{{   end }}
 eval "$(nodenv init -)"
 
 ### Load pyenv
