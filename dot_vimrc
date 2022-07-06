@@ -109,7 +109,7 @@ nnoremap j gj
 nnoremap k gk
 " シンタックスハイライトの有効化
 syntax on
-colorscheme wombat
+colorscheme onedark
 
 " 操作系
 " マウス操作の有効化 & ホイール操作の有効化
