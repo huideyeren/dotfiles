@@ -36,21 +36,6 @@ if [[ $(command -v bat) ]]; then
   alias cat=bat
 fi
 
-
-{{ if eq .chezmoi.os "linux" }}
-{{   if eq .chezmoi.osRelease.id "debian" }}
-### setting fcitx
-export QT_IM_MODULE=fcitx
-export GTK_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-export DefaultIMModule=fcitx
-if [ $SHLVL = 1 ] ; then
-  (fcitx-autostart > /dev/null 2>&1 &)
-  xset -r 49  > /dev/null 2>&1
-fi
-{{   end }}
-{{ end }}
-
 {{ if eq .chezmoi.os "linux" }}
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 # resolv conf
