@@ -147,7 +147,7 @@ autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
 
 " lightlineの色設定
 let g:lightline = {
-      \ 'colorscheme': 'one dark',
+      \ 'colorscheme': 'one_dark',
       \ }
 
 " nerdtree git
