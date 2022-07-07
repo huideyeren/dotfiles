@@ -27,29 +27,14 @@ brew install procs
 brew install tmux
 
 {{ else if eq .chezmoi.os "linux" -}}
+### Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # sheldon
-curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
-  | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
+cargo install sheldon
 
 # starship
-curl -fsSL https://starship.rs/install.sh | sh -s -- --yes
-
-{{   if eq .chezmoi.osRelease.id "ubuntu" }}
-
-# github CLI
-curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-sudo apt update
-sudo apt install gh
-
-# peco
-sudo apt install -y peco
-
-{{     if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
-
-# Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+cargo install starship --locked
 
 # exa
 cargo install exa
@@ -66,6 +51,19 @@ cargo install fd-find
 # ripgrep
 cargo install ripgrep
 
+{{   if eq .chezmoi.osRelease.id "ubuntu" }}
+
+# github CLI
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+sudo apt update
+sudo apt install -y gh
+
+# peco
+sudo apt install -y peco
+
+{{     if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+
 # tmux
 sudo apt update
 sudo apt install -y git automake bison build-essential pkg-config libevent-dev libncurses5-dev
@@ -75,8 +73,6 @@ sudo ./autogen.sh
 sudo ./configure --prefix=/usr/local
 sudo make
 sudo make install
-
-
 
 # Japanese environment
 wget -q https://www.ubuntulinux.jp/ubuntu-ja-archive-keyring.gpg -O- | sudo apt-key add -
@@ -107,24 +103,13 @@ im-config -n fcitx
 
 {{     else }}
 
-# exa
-sudo apt install exa
-
-# bat
-sudo apt install bat
-
-# procs
-sudo apt install procs
-
 # tmux
 sudo apt install tmux
 
 {{     end }}
 
 # chezmoi
-wget https://github.com/twpayne/chezmoi/releases/download/v2.18.1/chezmoi_2.18.1_linux_amd64.deb
-sudo dpkg -i chezmoi_2.18.1_linux_amd64.deb
-
+git clone https://github.com/twpayne/chezmoi.git
 {{   else if eq .chezmoi.osRelease.id "debian" }}
 
 # github CLI
@@ -135,15 +120,6 @@ sudo apt install -y gh
 
 # peco
 sudo apt install -y peco
-
-# exa
-sudo apt install -y exa
-
-# bat
-sudo apt install -y bat
-
-# procs
-sudo apt install -y procs
 
 # tmux
 sudo apt install -y tmux
