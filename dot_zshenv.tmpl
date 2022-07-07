@@ -1,9 +1,14 @@
+### Load Rust Tool Chain
+. "$HOME/.cargo/env"
+
 {{ if eq .chezmoi.os "darwin" }}
 ### Forbid for Reading /etc/profile
 setopt no_global_rcs
 
 ### Path Helper for mac
 eval "$(/usr/libexec/path_helper)"
+
+### Homebrew
 eval $(/opt/homebrew/bin/brew shellenv)
 {{ end }}
 
@@ -14,12 +19,12 @@ compinit
 {{ if eq .chezmoi.os "darwin" }}
 ### Setting Ruby
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-{{ end }}
 
-{{ if ne (env "REMOTE_CONTAINERS") "true" }}
-### Load Rust Tool Chain
-. "$HOME/.cargo/env"
+{{ else if eq .chezmoi.os "linux" }}
+### Load Go
+export PATH="/usr/local/go/bin:$PATH"
 
+{{   if ne (env "REMOTE_CONTAINERS") "true" }}
 ### Load rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
@@ -37,4 +42,5 @@ eval "$(pyenv init -)"
 
 ### Load poetry
 export PATH="$HOME/.poetry/bin:$PATH"
+{{   end }}
 {{ end }}
