@@ -27,7 +27,7 @@ brew install procs
 brew install tmux
 
 {{ else if eq .chezmoi.os "linux" -}}
-### Rust
+# Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # sheldon
@@ -50,6 +50,16 @@ cargo install fd-find
 
 # ripgrep
 cargo install ripgrep
+
+# golang
+wget -q https://go.dev/dl/go1.18.3.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.18.3.linux-amd64.tar.gz
+export PATH=$PATH:/usr/local/go/bin
+
+# chezmoi
+git clone https://github.com/twpayne/chezmoi.git
+cd chezmoi
+make install
 
 {{   if eq .chezmoi.osRelease.id "ubuntu" }}
 
@@ -104,12 +114,10 @@ im-config -n fcitx
 {{     else }}
 
 # tmux
-sudo apt install tmux
+sudo apt install -y tmux
 
 {{     end }}
 
-# chezmoi
-git clone https://github.com/twpayne/chezmoi.git
 {{   else if eq .chezmoi.osRelease.id "debian" }}
 
 # github CLI
@@ -123,10 +131,6 @@ sudo apt install -y peco
 
 # tmux
 sudo apt install -y tmux
-
-# chezmoi
-wget https://github.com/twpayne/chezmoi/releases/download/v2.18.1/chezmoi_2.18.1_linux_amd64.deb
-sudo dpkg -i chezmoi_2.18.1_linux_amd64.deb
 
 {{   else if eq .chezmoi.osRelease.id "fedora" }}
 
