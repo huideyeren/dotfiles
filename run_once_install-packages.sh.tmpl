@@ -51,17 +51,20 @@ cargo install fd-find
 # ripgrep
 cargo install ripgrep
 
+{{   if eq .chezmoi.osRelease.id "debian" }}
 # golang
 wget -q https://go.dev/dl/go1.18.3.linux-amd64.tar.gz
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.18.3.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
+{{   else if eq .chezmoi.osRelease.id "fedora" }}
+$ sudo dnf install -y golang
+{{   end }}
 
 # chezmoi
-git clone https://github.com/twpayne/chezmoi.git
-cd chezmoi
-make install
+sudo apt update
+sudo apt install -y golang
 
-{{   if eq .chezmoi.osRelease.id "ubuntu" }}
+{{   if eq .chezmoi.osRelease.id "debian" }}
 
 # github CLI
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
@@ -84,14 +87,16 @@ sudo ./configure --prefix=/usr/local
 sudo make
 sudo make install
 
+
+{{       if eq .chezmoi.osRelease.id "ubuntu" }}
 # Japanese environment
 wget -q https://www.ubuntulinux.jp/ubuntu-ja-archive-keyring.gpg -O- | sudo apt-key add -
 wget -q https://www.ubuntulinux.jp/ubuntu-jp-ppa-keyring.gpg -O- | sudo apt-key add -
 sudo wget https://www.ubuntulinux.jp/sources.list.d/focal.list -O /etc/apt/sources.list.d/ubuntu-ja.list
 sudo apt update
-sudo apt upgrade
 sudo apt -y install ubuntu-defaults-ja
 sudo apt -y install manpages-ja manpages-ja-dev
+{{       end }}
 
 # fonts
 cat << EOS | sudo tee /etc/fonts/local.conf
@@ -107,7 +112,9 @@ setxkbmap -layout us
 
 # fcitx
 sudo apt update
-sudo apt install -y fcitx fcitx-mozc
+sudo apt install -y fcitx fcitx-mozc dbus-x11
+sudo apt -y purge ibus
+sudo sh -c "dbus-uuidgen > /var/lib/dbus/machine-id"
 sudo update-locale LANG=ja_JP.UTF8
 im-config -n fcitx
 
@@ -118,19 +125,8 @@ sudo apt install -y tmux
 
 {{     end }}
 
-{{   else if eq .chezmoi.osRelease.id "debian" }}
-
-# github CLI
-curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-sudo apt update
-sudo apt install -y gh
-
-# peco
-sudo apt install -y peco
-
-# tmux
-sudo apt install -y tmux
+# package update
+sudo apt upgrade -y
 
 {{   else if eq .chezmoi.osRelease.id "fedora" }}
 
