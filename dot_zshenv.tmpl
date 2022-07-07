@@ -1,8 +1,11 @@
 {{ if eq .chezmoi.os "darwin" }}
 ### Path Helper for mac
 eval "$(/usr/libexec/path_helper)"
+echo PHASE 1 at `date` >> ~/path.txt
+echo $PATH >> ~/path.txt
 eval $(/opt/homebrew/bin/brew shellenv)
-echo $PATH
+echo PHASE 2 at `date` >> ~/path.txt
+echo $PATH >> ~/path.txt
 {{ end }}
 
 ### Setting autoload
@@ -12,34 +15,45 @@ compinit
 {{ if eq .chezmoi.os "darwin" }}
 ### Setting Ruby
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-echo $PATH
+echo PHASE 3 at `date` >> ~/path.txt
+echo $PATH >> ~/path.txt
 {{ end }}
 
 {{ if ne (env "REMOTE_CONTAINERS") "true" }}
 ### Load Rust Tool Chain
 . "$HOME/.cargo/env"
-echo $PATH
+echo PHASE 4 at `date` >> ~/path.txt
+echo $PATH >> ~/path.txt
 
 ### Load rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
-echo $PATH
+echo PHASE 5 at `date` >> ~/path.txt
+echo $PATH >> ~/path.txt
 eval "$(rbenv init - zsh)"
+echo PHASE 6 at `date` >> ~/path.txt
+echo $PATH >> ~/path.txt
 
 ### Load nodenv
 export PATH="$HOME/.nodenv/bin:$PATH"
 export PATH="$HOME/.nodenv/shims:$PATH"
-echo $PATH
+echo PHASE 7 at `date` >> ~/path.txt
+echo $PATH >> ~/path.txt
 eval "$(nodenv init -)"
+echo PHASE 8 at `date` >> ~/path.txt
+echo $PATH >> ~/path.txt
 
 ### Load pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-echo $PATH
-eval "$(pyenv init --path)"
+echo PHASE 9 at `date` >> ~/path.txt
+echo $PATH >> ~/path.txt
 eval "$(pyenv init -)"
+echo PHASE 10 at `date` >> ~/path.txt
+echo $PATH >> ~/path.txt
 
 ### Load poetry
 export PATH="$HOME/.poetry/bin:$PATH"
-echo $PATH
+echo PHASE 11 at `date` >> ~/path.txt
+echo $PATH >> ~/path.txt
 {{ end }}
