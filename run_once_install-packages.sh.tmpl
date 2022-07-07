@@ -44,7 +44,7 @@ sudo apt update
 sudo apt install gh
 
 # peco
-sudo apt install peco
+sudo apt install -y peco
 
 {{     if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 
@@ -68,7 +68,7 @@ cargo install ripgrep
 
 # tmux
 sudo apt update
-sudo apt install git automake bison build-essential pkg-config libevent-dev libncurses5-dev
+sudo apt install -y git automake bison build-essential pkg-config libevent-dev libncurses5-dev
 sudo git clone https://github.com/tmux/tmux /usr/local/src/tmux
 cd /usr/local/src/tmux
 sudo ./autogen.sh
@@ -84,8 +84,8 @@ wget -q https://www.ubuntulinux.jp/ubuntu-jp-ppa-keyring.gpg -O- | sudo apt-key 
 sudo wget https://www.ubuntulinux.jp/sources.list.d/focal.list -O /etc/apt/sources.list.d/ubuntu-ja.list
 sudo apt update
 sudo apt upgrade
-sudo apt install ubuntu-defaults-ja
-sudo apt install manpages-ja manpages-ja-dev
+sudo apt -y install ubuntu-defaults-ja
+sudo apt -y install manpages-ja manpages-ja-dev
 
 # fonts
 cat << EOS | sudo tee /etc/fonts/local.conf
@@ -95,15 +95,15 @@ cat << EOS | sudo tee /etc/fonts/local.conf
 EOS
 
 # us-keyboard
-sudo apt install x11-xkb-utils
+sudo apt update
+sudo apt install -y x11-xkb-utils
 setxkbmap -layout us
 
-# fcitx5
-sudo add-apt-repository ppa:ikuya-fruitsbasket/fcitx5
+# fcitx
 sudo apt update
-sudo apt install fcitx5 fcitx5-mozc
+sudo apt install -y fcitx fcitx-mozc
 sudo update-locale LANG=ja_JP.UTF8
-im-config -n fcitx5
+im-config -n fcitx
 
 {{     else }}
 
@@ -131,22 +131,22 @@ sudo dpkg -i chezmoi_2.18.1_linux_amd64.deb
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
 sudo apt update
-sudo apt install gh
+sudo apt install -y gh
 
 # peco
-sudo apt install peco
+sudo apt install -y peco
 
 # exa
-sudo apt install exa
+sudo apt install -y exa
 
 # bat
-sudo apt install bat
+sudo apt install -y bat
 
 # procs
-sudo apt install procs
+sudo apt install -y procs
 
 # tmux
-sudo apt install tmux
+sudo apt install -y tmux
 
 # chezmoi
 wget https://github.com/twpayne/chezmoi/releases/download/v2.18.1/chezmoi_2.18.1_linux_amd64.deb
