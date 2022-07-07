@@ -96,6 +96,12 @@ sudo wget https://www.ubuntulinux.jp/sources.list.d/focal.list -O /etc/apt/sourc
 sudo apt update
 sudo apt -y install ubuntu-defaults-ja
 sudo apt -y install manpages-ja manpages-ja-dev
+{{       else }}
+# Japanese environment
+sudo apt update
+sudo apt -y install task-japanese locales-all task-japanese-desktop
+localectl set-locale LANG=ja_JP.UTF-8 LANGUAGE="ja_JP:ja"
+source /etc/default/locale
 {{       end }}
 
 # fonts
