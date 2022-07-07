@@ -35,7 +35,7 @@ curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
 # starship
 curl -fsSL https://starship.rs/install.sh | sh -s -- --yes
 
-{{   if eq .chezmoi.osRelease.id "debian" }}
+{{   if eq .chezmoi.osRelease.id "ubuntu" }}
 
 # github CLI
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
