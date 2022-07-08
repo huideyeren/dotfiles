@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+. "$HOME/.cargo/env"
+
 {{ if eq .chezmoi.os "darwin" -}}
 
 # sheldon
@@ -27,10 +31,6 @@ brew install procs
 brew install tmux
 
 {{ else if eq .chezmoi.os "linux" -}}
-# Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-. "$HOME/.cargo/env"
-
 # sheldon
 cargo install sheldon
 
@@ -53,12 +53,19 @@ cargo install fd-find
 cargo install ripgrep
 
 {{   if eq .chezmoi.osRelease.id "alpine" }}
+# zsh
+sudo apk add zsh
+
 # github CLI
 sudo apk add github-cli
 
 # tmux
 sudo apk add tmux
 {{   if eq .chezmoi.osRelease.id "debian" }}
+
+# zsh
+sudo apt update
+sudo apt install -y zsh
 
 # github CLI
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
@@ -130,6 +137,9 @@ sudo apt upgrade -y
 
 {{   else if eq .chezmoi.osRelease.id "fedora" }}
 
+# zsh
+sudo dnf -y install zsh
+
 # github CLI
 sudo dnf -y install 'dnf-command(config-manager)'
 sudo dnf -y config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
@@ -143,6 +153,9 @@ sudo dnf -y upgrade
 
 {{   else if eq .chezmoi.osRelease.id "centos" }}
 
+# zsh
+sudo dnf -y install zsh
+
 # github CLI
 sudo dnf -y install 'dnf-command(config-manager)'
 sudo dnf -y config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
@@ -155,6 +168,9 @@ sudo dnf -y upgrade
 sudo dnf -y install tmux
 
 {{   else if eq .chezmoi.osRelease.id "opensuse" }}
+
+# tmux
+sudo zypper --non-interactive install zsh
 
 # github CLI
 sudo zypper --non-interactive addrepo https://cli.github.com/packages/rpm/gh-cli.repo
