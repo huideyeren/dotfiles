@@ -1,5 +1,15 @@
 #!/bin/sh
 
+if [[ -f /etc/os-release ]]; then
+  source /usr/lib/os-release
+  if [[ $ID = alpine ]]; then
+    sudo apk install git
+    sudo apk install tar
+    sudo apk install wget
+    sudo apk install zsh
+  fi
+fi
+
 # zsh-defer
 git clone https://github.com/romkatv/zsh-defer.git ~/zsh-defer
 
@@ -18,7 +28,9 @@ else
     echo "/etc/os-release is not exist."
 fi
 
-
 # chezmoi
+git clone https://github.com/twpayne/chezmoi.git
+cd chezmoi
+make install
 
-sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply huideyeren
+chezmoi init https://github.com/huideyeren/dotfiles.git
