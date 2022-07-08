@@ -29,12 +29,13 @@ brew install tmux
 {{ else if eq .chezmoi.os "linux" -}}
 # Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+. "$HOME/.cargo/env"
 
 # sheldon
 cargo install sheldon
 
 # starship
-cargo install starship --locked
+cargo install starship
 
 # exa
 cargo install exa
@@ -51,19 +52,12 @@ cargo install fd-find
 # ripgrep
 cargo install ripgrep
 
-{{   if eq .chezmoi.osRelease.id "debian" }}
-# golang
-wget -q https://go.dev/dl/go1.18.3.linux-amd64.tar.gz
-sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.18.3.linux-amd64.tar.gz
-export PATH=$PATH:/usr/local/go/bin
-{{   else if eq .chezmoi.osRelease.id "fedora" }}
-$ sudo dnf install -y golang
-{{   end }}
+{{   if eq .chezmoi.osRelease.id "alpine" }}
+# github CLI
+sudo apk add github-cli
 
-# chezmoi
-sudo apt update
-sudo apt install -y golang
-
+# tmux
+sudo apk add tmux
 {{   if eq .chezmoi.osRelease.id "debian" }}
 
 # github CLI
@@ -137,80 +131,42 @@ sudo apt upgrade -y
 {{   else if eq .chezmoi.osRelease.id "fedora" }}
 
 # github CLI
-sudo dnf install 'dnf-command(config-manager)'
-sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
-sudo dnf install gh
-
-# exa
-sudo dnf install exa
-
-# bat
-sudo dnf install bat
-
-# procs
-sudo dnf install procs
+sudo dnf -y install 'dnf-command(config-manager)'
+sudo dnf -y config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+sudo dnf -y install gh
 
 # tmux
-sudo dnf install tmux
+sudo dnf -y install tmux
+
+# package update
+sudo dnf -y upgrade
 
 {{   else if eq .chezmoi.osRelease.id "centos" }}
 
 # github CLI
-sudo dnf install 'dnf-command(config-manager)'
-sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
-sudo dnf install gh
+sudo dnf -y install 'dnf-command(config-manager)'
+sudo dnf -y config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+sudo dnf -y install gh
 
-# exa
-sudo dnf install exa
-
-# bat
-sudo dnf install bat
-
-# procs
-sudo dnf install procs
+# package update
+sudo dnf -y upgrade
 
 # tmux
-sudo dnf install tmux
+sudo dnf -y install tmux
 
 {{   else if eq .chezmoi.osRelease.id "opensuse" }}
 
 # github CLI
-sudo zypper addrepo https://cli.github.com/packages/rpm/gh-cli.repo
-sudo zypper ref
-sudo zypper install gh
-
-# exa
-sudo zypper install exa
-
-# bat
-sudo zypper install bat
-
-# procs
-
+sudo zypper --non-interactive addrepo https://cli.github.com/packages/rpm/gh-cli.repo
+sudo zypper --non-interactive ref
+sudo zypper --non-interactive install gh
 
 # tmux
-sudo zypper install tmux
+sudo zypper --non-interactive install tmux
 
-
-{{   else if eq .chezmoi.osRelease.id "alpine" }}
-
-# github CLI
-sudo apk add github-cli
-
-# exa
-sudo apk add exa
-
-# bat
-sudo apk add bat
-
-# procs
-sudo apk add procs
-
-# tmux
-sudo apk add tmux
-
+# package update
+sudo zypper --non-interactive up 
 {{   end }}
-
 {{ end }}
 
 {{ if ne (env "REMOTE_CONTAINERS") "true" }}
