@@ -2,12 +2,14 @@
 
 if [[ -f /etc/os-release ]]; then
   source /usr/lib/os-release
-  if [[ $ID = alpine ]]; then
-    sudo apk install git
-    sudo apk install tar
-    sudo apk install wget
-    sudo apk install zsh
-  fi
+  case $ID in
+    debian ) sudo apt update && sudo apt install -y zsh;;
+    ubuntu ) sudo apt update && sudo apt install -y zsh;;
+    fedora ) sudo dnf -y install zsh;;
+    centos ) sudo dnf -y install zsh;;
+    opensuse ) sudo udo zypper --non-interactive install zsh;;
+    alpine ) sudo apk install git && sudo apk install zsh && sudo apk install tar && sudo apk install wget;;
+  esac
 fi
 
 # zsh-defer
