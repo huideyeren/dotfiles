@@ -22,6 +22,8 @@ if [[ -f /etc/os-release ]]; then
   case $ID in
     alpine ) apk add --update-cache --no-cache vim git make musl-dev go curl
     *) curl -Lo go_installer https://get.golang.org/linux && chmod +x go_installer && ./go_installer && rm go_installer
+  esac
+fi
 
 # chezmoi
 git clone https://github.com/twpayne/chezmoi.git ~/chezmoi
