@@ -116,6 +116,72 @@ apk add github-cli
 
 # tmux
 apk add tmux
+
+{{   else if eq .chezmoi.osRelease.id "ubuntu" }}
+# github CLI
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+sudo apt update
+sudo apt install -y gh
+
+# peco
+sudo apt install -y peco
+
+{{     if ne (env "REMOTE_CONTAINERS") "true" }}
+{{       if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+# tmux
+sudo apt update
+sudo apt install -y git automake bison build-essential pkg-config libevent-dev libncurses5-dev
+sudo git clone https://github.com/tmux/tmux /usr/local/src/tmux
+cd /usr/local/src/tmux
+sudo ./autogen.sh
+sudo ./configure --prefix=/usr/local
+sudo make
+sudo make install
+
+# Japanese environment
+wget -q https://www.ubuntulinux.jp/ubuntu-ja-archive-keyring.gpg -O- | sudo apt-key add -
+wget -q https://www.ubuntulinux.jp/ubuntu-jp-ppa-keyring.gpg -O- | sudo apt-key add -
+sudo wget https://www.ubuntulinux.jp/sources.list.d/focal.list -O /etc/apt/sources.list.d/ubuntu-ja.list
+sudo apt update
+sudo apt -y install ubuntu-defaults-ja
+sudo apt -y install manpages-ja manpages-ja-dev
+
+# fonts
+cat << EOS | sudo tee /etc/fonts/local.conf
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig><dir>/mnt/c/Windows/Fonts</dir></fontconfig>
+EOS
+
+# us-keyboard
+sudo apt update
+sudo apt install -y x11-xkb-utils
+setxkbmap -layout us
+
+# fcitx
+sudo apt update
+sudo apt install -y fcitx fcitx-mozc dbus-x11
+sudo apt -y purge ibus
+sudo sh -c "dbus-uuidgen > /var/lib/dbus/machine-id"
+sudo update-locale LANG=ja_JP.UTF8
+im-config -n fcitx
+{{       else }}
+
+# tmux
+sudo apt install -y tmux
+
+{{       end }}
+{{     else }}
+
+# tmux
+sudo apt install -y tmux
+
+{{     end }}
+
+# package update
+sudo apt upgrade -y
+
 {{   else if eq .chezmoi.osRelease.id "debian" }}
 # github CLI
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
@@ -138,21 +204,11 @@ sudo ./configure --prefix=/usr/local
 sudo make
 sudo make install
 
-{{         if eq .chezmoi.osRelease.id "ubuntu" }}
-# Japanese environment
-wget -q https://www.ubuntulinux.jp/ubuntu-ja-archive-keyring.gpg -O- | sudo apt-key add -
-wget -q https://www.ubuntulinux.jp/ubuntu-jp-ppa-keyring.gpg -O- | sudo apt-key add -
-sudo wget https://www.ubuntulinux.jp/sources.list.d/focal.list -O /etc/apt/sources.list.d/ubuntu-ja.list
-sudo apt update
-sudo apt -y install ubuntu-defaults-ja
-sudo apt -y install manpages-ja manpages-ja-dev
-{{         else }}
 # Japanese environment
 sudo apt update
 sudo apt -y install task-japanese locales-all task-japanese-desktop
 localectl set-locale LANG=ja_JP.UTF-8 LANGUAGE="ja_JP:ja"
 source /etc/default/locale
-{{         end }}
 
 # fonts
 cat << EOS | sudo tee /etc/fonts/local.conf
