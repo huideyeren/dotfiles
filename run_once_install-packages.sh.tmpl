@@ -53,20 +53,12 @@ cargo install fd-find
 cargo install ripgrep
 
 {{   if eq .chezmoi.osRelease.id "alpine" }}
-# zsh
-sudo apk add zsh
-
 # github CLI
 sudo apk add github-cli
 
 # tmux
 sudo apk add tmux
 {{   if eq .chezmoi.osRelease.id "debian" }}
-
-# zsh
-sudo apt update
-sudo apt install -y zsh
-
 # github CLI
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
@@ -77,7 +69,6 @@ sudo apt install -y gh
 sudo apt install -y peco
 
 {{     if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
-
 # tmux
 sudo apt update
 sudo apt install -y git automake bison build-essential pkg-config libevent-dev libncurses5-dev
@@ -87,7 +78,6 @@ sudo ./autogen.sh
 sudo ./configure --prefix=/usr/local
 sudo make
 sudo make install
-
 
 {{       if eq .chezmoi.osRelease.id "ubuntu" }}
 # Japanese environment
@@ -136,10 +126,6 @@ sudo apt install -y tmux
 sudo apt upgrade -y
 
 {{   else if eq .chezmoi.osRelease.id "fedora" }}
-
-# zsh
-sudo dnf -y install zsh
-
 # github CLI
 sudo dnf -y install 'dnf-command(config-manager)'
 sudo dnf -y config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
@@ -152,10 +138,6 @@ sudo dnf -y install tmux
 sudo dnf -y upgrade
 
 {{   else if eq .chezmoi.osRelease.id "centos" }}
-
-# zsh
-sudo dnf -y install zsh
-
 # github CLI
 sudo dnf -y install 'dnf-command(config-manager)'
 sudo dnf -y config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
@@ -166,12 +148,7 @@ sudo dnf -y upgrade
 
 # tmux
 sudo dnf -y install tmux
-
 {{   else if eq .chezmoi.osRelease.id "opensuse" }}
-
-# tmux
-sudo zypper --non-interactive install zsh
-
 # github CLI
 sudo zypper --non-interactive addrepo https://cli.github.com/packages/rpm/gh-cli.repo
 sudo zypper --non-interactive ref
