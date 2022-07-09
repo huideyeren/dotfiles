@@ -5,9 +5,9 @@ if [[ -f /etc/os-release ]]; then
   case $ID in
     debian ) sudo apt update && sudo apt install -y zsh;;
     ubuntu ) sudo apt update && sudo apt install -y zsh;;
-    fedora ) sudo dnf update && sudo dnf group install -y "Development Tools" && sudo dnf install -y wget tar zsh;;
-    centos ) sudo dnf update && sudo dnf group install -y "Development Tools" && sudo dnf install -y wget tar zsh;;
-    miraclelinux ) sudo dnf update && sudo dnf group install -y "Development Tools" && sudo dnf install -y wget tar zsh;;
+    fedora ) sudo dnf update && sudo dnf group install -y "Development Tools" && sudo dnf install -y wget tar zsh && sudo dnf install -y gcc zlib-devel bzip2 bzip2-devel readline readline-devel sqlite sqlite-devel openssl openssl-devel git libffi-devel tar make;;
+    centos ) sudo dnf update && sudo dnf group install -y "Development Tools" && sudo dnf install -y wget tar zsh && sudo dnf install -y gcc zlib-devel bzip2 bzip2-devel readline readline-devel sqlite sqlite-devel openssl openssl-devel git libffi-devel tar make;;
+    miraclelinux ) sudo dnf update && sudo dnf group install -y "Development Tools" && sudo dnf install -y wget tar zsh && sudo dnf install -y gcc zlib-devel bzip2 bzip2-devel readline readline-devel sqlite sqlite-devel openssl openssl-devel git libffi-devel tar make;;
     opensuse ) sudo udo zypper --non-interactive install zsh;;
     alpine ) sudo apk install git && sudo apk install zsh && sudo apk install tar && sudo apk install wget;;
   esac
