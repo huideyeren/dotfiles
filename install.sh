@@ -25,6 +25,9 @@ if [[ -f /etc/os-release ]]; then
     * ) curl -Lo go_installer https://get.golang.org/linux && chmod +x go_installer && ./go_installer && rm go_installer;;
   esac
 fi
+export PATH=$HOME/.go/bin:$PATH
+export GOPATH=$HOME/go
+export PATH=$HOME/go/bin:$PATH
 
 # chezmoi
 git clone https://github.com/twpayne/chezmoi.git ~/chezmoi
