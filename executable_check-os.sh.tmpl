@@ -5,10 +5,10 @@ echo "You are using macOS."
 {{ else if eq .chezmoi.os "linux" }}
 {{   if eq .chezmoi.osRelease.id "alpine" }}
 echo "You are using Alpine Linux."
-{{   else if eq .chezmoi.osRelease.id "ubuntu" }}
-echo "You are using Ubuntu."
 {{   else if eq .chezmoi.osRelease.id "debian" }}
 echo "You are using Debian GNU/Linux."
+{{   else if eq .chezmoi.osRelease.id "ubuntu" }}
+echo "You are using Ubuntu."
 {{   else if eq .chezmoi.osRelease.id "fedora" }}
 echo "You are using Fedora."
 {{   else if eq .chezmoi.osRelease.id "centos" }}
