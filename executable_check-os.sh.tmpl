@@ -13,6 +13,8 @@ echo "You are using Ubuntu."
 echo "You are using Fedora."
 {{   else if eq .chezmoi.osRelease.id "centos" }}
 echo "You are using CentOS."
+{{   else if eq .chezmoi.osRelease.id "miraclelinux" }}
+echo "You are using MIRACLE LINUX."
 {{   else if eq .chezmoi.osRelease.id "opensuse" }}
 echo "You are using openSUSE."
 {{   else }}
