@@ -112,10 +112,10 @@ cargo install ripgrep
 
 {{   if eq .chezmoi.osRelease.id "alpine" }}
 # github CLI
-sudo apk add github-cli
+apk add github-cli
 
 # tmux
-sudo apk add tmux
+apk add tmux
 {{   else if eq .chezmoi.osRelease.id "debian" }}
 # github CLI
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
