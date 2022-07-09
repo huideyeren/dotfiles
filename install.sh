@@ -5,8 +5,9 @@ if [[ -f /etc/os-release ]]; then
   case $ID in
     debian ) sudo apt update && sudo apt install -y zsh;;
     ubuntu ) sudo apt update && sudo apt install -y zsh;;
-    fedora ) sudo dnf -y install zsh;;
-    centos ) sudo dnf -y install zsh;;
+    fedora ) sudo dnf update && sudo dnf group install -y "Development Tools" && sudo dnf install -y wget tar zsh;;
+    centos ) sudo dnf update && sudo dnf group install -y "Development Tools" && sudo dnf install -y wget tar zsh;;
+    miraclelinux ) sudo dnf update && sudo dnf group install -y "Development Tools" && sudo dnf install -y wget tar zsh;;
     opensuse ) sudo udo zypper --non-interactive install zsh;;
     alpine ) sudo apk install git && sudo apk install zsh && sudo apk install tar && sudo apk install wget;;
   esac
@@ -23,6 +24,7 @@ if [[ -f /etc/os-release ]]; then
     ubuntu ) sudo apt update && sudo apt install -y golang;;
     fedora ) sudo dnf -y install golang;;
     centos ) sudo dnf -y install golang;;
+    miraclelinux ) sudo dny -y install golang;;
     opensuse ) sudo udo zypper --non-interactive install golang;;
     alpine ) sudo apk install golang;;
   esac
