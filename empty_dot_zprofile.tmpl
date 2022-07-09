@@ -1,5 +1,6 @@
 {{ if eq .chezmoi.os "linux" }}
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+{{     if eq .chezmoi.osRelease.id "ubuntu" }}
 #Added by https://astherier.com/blog/2020/08/install-fcitx-mozc-on-wsl2-ubuntu2004/
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
@@ -10,6 +11,7 @@ if [ $SHLVL = 1 ] ; then
   xset -r 49  > /dev/null 2>&1
 fi
 #end
+{{     end }}
 
 if [ -z "$SSH_AUTH_SOCK" ]; then
    # Check for a currently running instance of the agent
