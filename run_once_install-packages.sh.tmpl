@@ -4,14 +4,15 @@
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 . "$HOME/.cargo/env"
 
+{{ if eq .chezmoi.os "darwin" -}}
+
 # pyenv
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 pyenv install 3.10.5
 pyenv global 3.10.5
-
-{{ if eq .chezmoi.os "darwin" -}}
+pyenv rehash
 
 # nodenv
 brew install nodenv
@@ -21,6 +22,13 @@ nodenv global 16.16.0
 nodenv rehash
 npm i -g yarn
 nodenv rehash
+
+# rbenv
+brew install rbenv
+eval "$(rbenv init -)"
+rbenv install 3.1.2
+rbenv global 3.1.2
+rbenv rehash
 
 # sheldon
 brew install sheldon
@@ -46,16 +54,40 @@ brew install procs
 # tumx
 brew install tmux
 
+# .NET SDK
+brew install --cask dotnet-sdk
+
 {{ else if eq .chezmoi.os "linux" -}}
 
+{{   if ne (env "REMOTE_CONTAINERS") "true" }}
+# pyenv
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+pyenv install 3.10.5
+pyenv global 3.10.5
+pyenv rehash
+
 # nodenv
-brew install nodenv
+git clone https://github.com/nodenv/nodenv.git ~/.nodenv
+git clone https://github.com/nodenv/node-build.git ~/.nodenv/plugins/node-build
+export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
 nodenv install 16.16.0
 nodenv global 16.16.0
 nodenv rehash
 npm i -g yarn
 nodenv rehash
+
+# rbenv
+git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+rbenv install 3.1.2
+rbenv global 3.1.2
+rbenv rehash
+{{   end }}
 
 # sheldon
 cargo install sheldon
@@ -78,10 +110,6 @@ cargo install fd-find
 # ripgrep
 cargo install ripgrep
 
-
-
-
-
 {{   if eq .chezmoi.osRelease.id "alpine" }}
 # github CLI
 sudo apk add github-cli
@@ -98,7 +126,8 @@ sudo apt install -y gh
 # peco
 sudo apt install -y peco
 
-{{     if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+{{     if ne (env "REMOTE_CONTAINERS") "true" }}
+{{       if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 # tmux
 sudo apt update
 sudo apt install -y git automake bison build-essential pkg-config libevent-dev libncurses5-dev
@@ -109,7 +138,7 @@ sudo ./configure --prefix=/usr/local
 sudo make
 sudo make install
 
-{{       if eq .chezmoi.osRelease.id "ubuntu" }}
+{{         if eq .chezmoi.osRelease.id "ubuntu" }}
 # Japanese environment
 wget -q https://www.ubuntulinux.jp/ubuntu-ja-archive-keyring.gpg -O- | sudo apt-key add -
 wget -q https://www.ubuntulinux.jp/ubuntu-jp-ppa-keyring.gpg -O- | sudo apt-key add -
@@ -117,13 +146,13 @@ sudo wget https://www.ubuntulinux.jp/sources.list.d/focal.list -O /etc/apt/sourc
 sudo apt update
 sudo apt -y install ubuntu-defaults-ja
 sudo apt -y install manpages-ja manpages-ja-dev
-{{       else }}
+{{         else }}
 # Japanese environment
 sudo apt update
 sudo apt -y install task-japanese locales-all task-japanese-desktop
 localectl set-locale LANG=ja_JP.UTF-8 LANGUAGE="ja_JP:ja"
 source /etc/default/locale
-{{       end }}
+{{         end }}
 
 # fonts
 cat << EOS | sudo tee /etc/fonts/local.conf
@@ -144,7 +173,12 @@ sudo apt -y purge ibus
 sudo sh -c "dbus-uuidgen > /var/lib/dbus/machine-id"
 sudo update-locale LANG=ja_JP.UTF8
 im-config -n fcitx
+{{       else }}
 
+# tmux
+sudo apt install -y tmux
+
+{{       end }}
 {{     else }}
 
 # tmux
