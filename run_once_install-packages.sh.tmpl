@@ -291,6 +291,18 @@ sudo zypper --non-interactive install gh
 sudo zypper --non-interactive install tmux
 
 # package update
+sudo zypper --non-interactive up
+
+{{   else if eq .chezmoi.osRelease.id "opensuse-leap" }}
+# github CLI
+sudo zypper --non-interactive addrepo https://cli.github.com/packages/rpm/gh-cli.repo
+sudo zypper --non-interactive ref
+sudo zypper --non-interactive install gh
+
+# tmux
+sudo zypper --non-interactive install tmux
+
+# package update
 sudo zypper --non-interactive up 
 {{   end }}
 
