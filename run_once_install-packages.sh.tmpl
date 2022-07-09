@@ -4,7 +4,23 @@
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 . "$HOME/.cargo/env"
 
+# pyenv
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+pyenv install 3.10.5
+pyenv global 3.10.5
+
 {{ if eq .chezmoi.os "darwin" -}}
+
+# nodenv
+brew install nodenv
+eval "$(nodenv init -)"
+nodenv install 16.16.0
+nodenv global 16.16.0
+nodenv rehash
+npm i -g yarn
+nodenv rehash
 
 # sheldon
 brew install sheldon
@@ -31,6 +47,16 @@ brew install procs
 brew install tmux
 
 {{ else if eq .chezmoi.os "linux" -}}
+
+# nodenv
+brew install nodenv
+eval "$(nodenv init -)"
+nodenv install 16.16.0
+nodenv global 16.16.0
+nodenv rehash
+npm i -g yarn
+nodenv rehash
+
 # sheldon
 cargo install sheldon
 
@@ -51,6 +77,10 @@ cargo install fd-find
 
 # ripgrep
 cargo install ripgrep
+
+
+
+
 
 {{   if eq .chezmoi.osRelease.id "alpine" }}
 # github CLI
@@ -148,6 +178,19 @@ sudo dnf -y upgrade
 
 # tmux
 sudo dnf -y install tmux
+
+{{   else if eq .chezmoi.osRelease.id "miraclelinux" }}
+# github CLI
+sudo dnf -y install 'dnf-command(config-manager)'
+sudo dnf -y config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+sudo dnf -y install gh
+
+# tmux
+sudo dnf -y install tmux
+
+# package update
+sudo dnf -y upgrade
+
 {{   else if eq .chezmoi.osRelease.id "opensuse" }}
 # github CLI
 sudo zypper --non-interactive addrepo https://cli.github.com/packages/rpm/gh-cli.repo
