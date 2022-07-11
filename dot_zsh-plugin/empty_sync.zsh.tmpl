@@ -45,5 +45,8 @@ fi
 {{   end }}
 {{ end }}
 
+### Load poetry
+export PATH="$HOME/.poetry/bin:$PATH"
+
 ### Load asdf-direnv
 source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
