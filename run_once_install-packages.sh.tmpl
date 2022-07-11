@@ -326,5 +326,13 @@ fi
 {{ end }}
 
 {{ if ne (env "REMOTE_CONTAINERS") "true" }}
+# poetry
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+
+# asdf-direnv
+asdf plugin-add direnv
+asdf direnv setup --shell bash --version latest
+
+# completed
+echo "Setup is completed!!"
 {{ end }}
