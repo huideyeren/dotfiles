@@ -17,17 +17,24 @@ autoload -Uz compinit
 compinit
 
 {{ if eq .chezmoi.os "darwin" }}
+
+
 ### Setting Ruby
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
-{{ else if eq .chezmoi.os "linux" }}
+### Load openssl for rbenv
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+{{ end }}
+
 ### Load Go
 export PATH="/usr/local/go/bin:$PATH"
 export PATH=$HOME/.go/bin:$PATH
 export GOPATH=$HOME/go
 export PATH=$HOME/go/bin:$PATH
 
-{{   if ne (env "REMOTE_CONTAINERS") "true" }}
+{{ if ne (env "REMOTE_CONTAINERS") "true" }}
+
 ### Load rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
@@ -45,5 +52,5 @@ eval "$(pyenv init -)"
 
 ### Load poetry
 export PATH="$HOME/.poetry/bin:$PATH"
-{{   end }}
+
 {{ end }}
