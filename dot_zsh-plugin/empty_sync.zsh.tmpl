@@ -49,4 +49,6 @@ fi
 export PATH="$HOME/.poetry/bin:$PATH"
 
 ### Load asdf-direnv
+{{ if eq .chezmoi.os "darwin" }}
 source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+{{ end }}
