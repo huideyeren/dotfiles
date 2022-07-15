@@ -169,7 +169,14 @@ im-config -n fcitx
 {{       else }}
 
 # tmux
-sudo apt install -y tmux
+sudo apt update
+sudo apt install -y git automake bison build-essential pkg-config libevent-dev libncurses5-dev
+sudo git clone https://github.com/tmux/tmux /usr/local/src/tmux
+cd /usr/local/src/tmux
+sudo ./autogen.sh
+sudo ./configure --prefix=/usr/local
+sudo make
+sudo make install
 
 {{       end }}
 {{     else }}
@@ -208,7 +215,7 @@ sudo make install
 sudo apt update
 sudo apt -y install task-japanese locales-all task-japanese-desktop
 localectl set-locale LANG=ja_JP.UTF-8 LANGUAGE="ja_JP:ja"
-source /etc/default/locale
+. /etc/default/locale
 
 # fonts
 cat << EOS | sudo tee /etc/fonts/local.conf
@@ -232,7 +239,14 @@ im-config -n fcitx
 {{       else }}
 
 # tmux
-sudo apt install -y tmux
+sudo apt update
+sudo apt install -y git automake bison build-essential pkg-config libevent-dev libncurses5-dev
+sudo git clone https://github.com/tmux/tmux /usr/local/src/tmux
+cd /usr/local/src/tmux
+sudo ./autogen.sh
+sudo ./configure --prefix=/usr/local
+sudo make
+sudo make install
 
 {{       end }}
 {{     else }}
@@ -308,7 +322,7 @@ sudo zypper --non-interactive up
 
 # OS Info
 if [[ -f /etc/os-release ]]; then
-  source /usr/lib/os-release
+  . /usr/lib/os-release
   case $ID in
     debian ) echo "The Linux distribution for this environment is Debian.";;
     ubuntu ) echo "The Linux distribution for this environment is Ubuntu.";;
