@@ -25,6 +25,9 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 ### Load openssl for rbenv
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
+# .NET Core SDK tools
+export PATH="$PATH:/Users/iosif/.dotnet/tools"
+
 {{ end }}
 
 ### Load Go
