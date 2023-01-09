@@ -18,7 +18,6 @@ compinit
 
 {{ if eq .chezmoi.os "darwin" }}
 
-
 ### Setting Ruby
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
@@ -54,13 +53,3 @@ eval "$(pyenv init -)"
 
 ### Load poetry
 export PATH="$HOME/.local/bin:$PATH"
-
-{{ if eq .chezmoi.os "darwin" }}
-
-### .net Core SDK
-export PATH=/usr/local/share/dotnet/x64:$PATH
-
-### .NET Core SDK tools
-export PATH=/Users/iosif/.dotnet/tools:$PATH
-
-{{ end }}
