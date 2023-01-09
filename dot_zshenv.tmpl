@@ -25,12 +25,6 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 ### Load openssl for rbenv
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
-### .net Core SDK
-export PATH="/usr/local/share/dotnet/x64:$PATH"
-
-### .NET Core SDK tools
-export PATH="/Users/iosif/.dotnet/tools:$PATH"
-
 {{ end }}
 
 ### Load Go
@@ -60,3 +54,13 @@ eval "$(pyenv init -)"
 
 ### Load poetry
 export PATH="$HOME/.local/bin:$PATH"
+
+{{ if eq .chezmoi.os "darwin" }}
+
+### .net Core SDK
+export PATH=/usr/local/share/dotnet/x64:$PATH
+
+### .NET Core SDK tools
+export PATH=/Users/iosif/.dotnet/tools:$PATH
+
+{{ end }}
