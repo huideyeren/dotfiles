@@ -7,3 +7,22 @@ eval "$(sheldon source)"
 ### Load volta
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+{{ if eq .chezmoi.os "darwin" }}
+function zipwin () 
+{
+  if [ -z $1 ] || [ $1 = . ]; then
+    local zip_name="$(basename $(pwd)).zip"
+    fd --type file --strip-cwd-prefix . -X 7z a -tzip -scsWIN $zip_name {}
+  else
+    local loc_dir=$(dirname $1)
+    local target=$(basename $1)
+    local zip_name="$(pwd)/${target}.zip"
+    fd --type file --base-directory=$loc_dir . $target -X 7z a -tzip -scsWIN $zip_name {}
+  fi
+
+  7z l $zip_name
+
+  return 0
+}
+{{ end }}
