@@ -10,15 +10,15 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
-pyenv install 3.10.5
-pyenv global 3.10.5
+pyenv install 3.13.1
+pyenv global 3.13.1
 pyenv rehash
 
 # nodenv
 brew install nodenv
 eval "$(nodenv init -)"
-nodenv install 16.16.0
-nodenv global 16.16.0
+nodenv install 22.13.1
+nodenv global 22.13.1
 nodenv rehash
 npm i -g yarn
 nodenv rehash
@@ -26,8 +26,8 @@ nodenv rehash
 # rbenv
 brew install rbenv
 eval "$(rbenv init -)"
-rbenv install 3.1.2
-rbenv global 3.1.2
+rbenv install 3.4.1
+rbenv global 3.4.1
 rbenv rehash
 
 # sheldon
@@ -64,8 +64,8 @@ brew install --cask dotnet-sdk
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
-pyenv install 3.10.5
-pyenv global 3.10.5
+pyenv install 3.13.1
+pyenv global 3.13.1
 pyenv rehash
 
 # nodenv
@@ -73,8 +73,8 @@ git clone https://github.com/nodenv/nodenv.git ~/.nodenv
 git clone https://github.com/nodenv/node-build.git ~/.nodenv/plugins/node-build
 export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
-nodenv install 16.16.0
-nodenv global 16.16.0
+nodenv install 22.13.1
+nodenv global 22.13.1
 nodenv rehash
 npm i -g yarn
 nodenv rehash
@@ -84,8 +84,8 @@ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-rbenv install 3.1.2
-rbenv global 3.1.2
+rbenv install 3.4.1
+rbenv global 3.4.1
 rbenv rehash
 {{   end }}
 
