@@ -16,6 +16,9 @@ eval $(/opt/homebrew/bin/brew shellenv)
 autoload -Uz compinit
 compinit
 
+### Setting Blender
+export PATH="$HOME/blender/Blender.app/Contents/MacOS:$PATH"
+
 {{ if eq .chezmoi.os "darwin" }}
 
 ### Setting Ruby
